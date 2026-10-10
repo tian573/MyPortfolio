@@ -159,10 +159,7 @@ export default function Home() {
           <h2 id="exp-title" className="h2" style={{ left: 180, top: 1100, width: 820 }}>
             Fullstack and mobile engineering for community-first products for 2+ years.
           </h2>
-          <span className="small-note" style={{ left: 180, top: 1214 }}>
-            A concise overview of my experience and tools.
-          </span>
-          <div className="cv-frame" style={{ left: 180, top: 1242, width: 170 }}>
+          <div className="cv-frame" style={{ left: 180, top: 1220, width: 170 }}>
             <a
               href="#"
               target="_blank"
@@ -170,8 +167,16 @@ export default function Home() {
               className="shot cv-shot"
               data-label="View CV ↗"
               aria-label="CV preview"
-            />
+            >
+              <img src="/assets/cvthumbnail.png" alt="Curriculum Vitae Preview" />
+            </a>
           </div>
+          <span
+            className="small-note"
+            style={{ left: 376, top: 1325, fontSize: "15px", lineHeight: "22px" }}
+          >
+            A concise overview of my experience and tools.
+          </span>
         </section>
 
         <section aria-labelledby="port-title">
