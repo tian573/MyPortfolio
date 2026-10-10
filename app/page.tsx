@@ -1,18 +1,30 @@
+"use client";
+
+import { useState } from "react";
 import Scaler from "./Scaler";
 
 const A = "/assets/";
-const dream = (name: string) => `${A}Dream world • ${name}.png`;
-const blurred = (name: string) => `${A}Blurred background • ${name}.png`;
+const dream = (name: string) => encodeURI(`${A}Dream world • ${name}.png`);
+const blurred = (name: string) => encodeURI(`${A}Blurred background • ${name}.png`);
 
-type Pos = { l?: number; t?: number; w?: number; h?: number; o?: number; blur?: number; cat?: boolean };
+type Pos = {
+  l?: number;
+  t?: number;
+  w?: number;
+  h?: number;
+  o?: number;
+  blur?: number;
+  cat?: boolean;
+  className?: string;
+};
 
-function Deco({ src, l, t, w, h, o, blur, cat }: Pos & { src: string }) {
+function Deco({ src, l, t, w, h, o, blur, cat, className }: Pos & { src: string }) {
   return (
     <img
       src={src}
       alt=""
       aria-hidden="true"
-      className={cat ? "abs cat" : "abs"}
+      className={`${cat ? "abs cat" : "abs"} ${className || ""}`}
       style={{
         left: l,
         top: t,
@@ -67,8 +79,7 @@ const projects = [
     kind: "Community cat rescue app",
     name: "PawWatch",
     desc: "A mobile-first platform for stray cat sightings, care tracking, and community rescue coordination.",
-    style: { left: 400, top: 1692, width: 450 },
-    imgH: 226,
+    className: "card-pawwatch",
     image: "/assets/PawWatch Portofolio Showcase 1.png",
     link: "https://canva.link/4n6pfc96z927mju",
   },
@@ -79,8 +90,7 @@ const projects = [
     kind: "Food donation platform",
     name: "Food Link",
     desc: "A collaborative web platform connecting food donors with local food banks and community support networks.",
-    style: { left: 910, top: 1787, width: 450 },
-    imgH: 226,
+    className: "card-foodlink",
     image: "/assets/FoodLink Portofolio Showcase 2.png",
     link: "https://canva.link/xfek1shollhdpga",
   },
@@ -97,38 +107,65 @@ const links = [
 const techs = ["Flutter", "Next.js", "Laravel", "Firebase", "MySQL", "SQLite", "Docker", "GitHub"];
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <Scaler>
       <main className="stage" id="top">
-        <Deco src={blurred("kitty silhouette")} l={-30} t={380} o={0.9} />
-        <Deco src={`${A}BLurKitten.png`} l={-40} t={905} o={0.18} blur={14} />
-        <Deco src={`${A}BlurEllipse.png`} l={-80} t={120} o={0.6} />
-        <Deco src={`${A}Blur2Ellipse.png`} l={1000} t={1250} />
-        <Deco src={`${A}Blur4Ellipse.png`} l={560} t={300} o={0.5} />
-        <Deco src={`${A}Blur5Ellipse.png`} l={1180} t={700} o={0.5} />
-        <Deco src={blurred("cloud cottage")} l={1100} t={2100} o={0.5} />
+        <Deco src={blurred("kitty silhouette")} l={-30} t={380} o={0.9} className="decor-glow decor-silhouette" />
+        <Deco src={`${A}BLurKitten.png`} l={-40} t={905} o={0.18} blur={14} className="decor-glow" />
+        <Deco src={`${A}BlurEllipse.png`} l={-80} t={120} o={0.6} className="decor-glow" />
+        <Deco src={`${A}Blur2Ellipse.png`} l={1000} t={1250} className="decor-glow" />
+        <Deco src={`${A}Blur4Ellipse.png`} l={560} t={300} o={0.5} className="decor-glow" />
+        <Deco src={`${A}Blur5Ellipse.png`} l={1180} t={700} o={0.5} className="decor-glow" />
+        <Deco src={blurred("cloud cottage")} l={1100} t={2100} o={0.5} className="decor-glow" />
 
-        <Deco src={`${A}FrameThread.png`} l={0} t={0} w={1440} />
-        <Deco src={`${A}waypoint1.png`} l={1082} t={1169} />
-        <Deco src={`${A}waypoint2.png`} l={541} t={1974} />
-        <Deco src={`${A}waypoint3.png`} l={1295} t={2340} />
+        <Deco src={`${A}FrameThread.png`} l={0} t={0} w={1440} className="thread-line" />
+        <Deco src={`${A}waypoint1.png`} l={1082} t={1169} className="waypoint-dot waypoint-1" />
+        <Deco src={`${A}waypoint2.png`} l={541} t={1974} className="waypoint-dot waypoint-2" />
+        <Deco src={`${A}waypoint3.png`} l={1295} t={2340} className="waypoint-dot waypoint-3" />
 
         <header className="nav">
           <a href="#top" className="brand" aria-label="Christian Lauren Samuel home">
             <img src={`${A}cat.png`} alt="" width={32} height={32} />
             <span>Christian Lauren Samuel</span>
           </a>
-          <nav aria-label="Primary">
+
+          <nav className="desktop-nav" aria-label="Primary">
             {links.map(([label, href]) => (
               <a key={href} href={href}>
                 {label}
               </a>
             ))}
           </nav>
+
+          <button
+            type="button"
+            className="nav-toggle"
+            aria-label="Toggle navigation menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <span className={menuOpen ? "bar open" : "bar"} />
+            <span className={menuOpen ? "bar open" : "bar"} />
+            <span className={menuOpen ? "bar open" : "bar"} />
+          </button>
+
+          <nav className={menuOpen ? "mobile-nav open" : "mobile-nav"} aria-label="Mobile">
+            {links.map(([label, href]) => (
+              <a
+                key={href}
+                href={href}
+                onClick={() => setMenuOpen(false)}
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
         </header>
 
-        <section aria-labelledby="hero-title">
-          <span id="introduction" className="anchor" style={{ top: 0 }} />
+        <section aria-labelledby="hero-title" className="hero-section">
+          <span id="introduction" className="anchor anchor-intro" />
           <h1 id="hero-title" className="hero-title">
             Hi! I’m Christian
             <br />
@@ -140,77 +177,80 @@ export default function Home() {
             <br />
             mobile apps for <DustWord color="#3fa4e8" offset={8}>communities</DustWord>.
           </p>
-          <Deco cat src={`${A}Dreamy cat sketch.png`} l={1130} t={108} />
-          <Deco cat src={dream("sleepy kitten hanging on the thread")} l={200} t={470} />
+
+          <Deco cat src={`${A}Dreamy cat sketch.png`} l={1130} t={108} className="cat-moon" />
+          <Deco cat src={dream("sleepy kitten hanging on the thread")} l={200} t={470} className="cat-hanging" />
 
           <div className="avatar">
             <img src="/assets/profilepic.jpeg" alt="Portrait of Christian Lauren Samuel (Tian)" />
           </div>
+
           <p className="intro">
             Fullstack developer and product engineer based in Jakarta, Indonesia. I create meaningful and practical digital products for
             people and communities.
           </p>
-          <Deco cat src={dream("sleepy kitten on a cloud")} l={1130} t={1030} />
+
+          <Deco cat src={dream("sleepy kitten on a cloud")} l={1130} t={1030} className="cat-cloud" />
         </section>
 
-        <section aria-labelledby="exp-title">
-          <span id="experience" className="anchor" style={{ top: 990 }} />
-          <p className="eyebrow" style={{ left: 180, top: 1068 }}>Experience</p>
-          <h2 id="exp-title" className="h2" style={{ left: 180, top: 1100, width: 820 }}>
+        <section aria-labelledby="exp-title" className="exp-section">
+          <span id="experience" className="anchor anchor-exp" />
+          <p className="eyebrow">Experience</p>
+          <h2 id="exp-title" className="h2">
             Fullstack and mobile engineering for community-first products for 2+ years.
           </h2>
-          <div className="cv-frame" style={{ left: 180, top: 1220, width: 170 }}>
-            <a
-              href="https://drive.google.com/file/d/1L8hA4DJkDvH_Ttvoudj0aJfhMCMOtYCr/view?usp=sharing"
-              target="_blank"
-              rel="noreferrer"
-              className="shot cv-shot"
-              data-label="View CV ↗"
-              aria-label="CV preview"
-            >
-              <img src="/assets/cvthumbnail.png" alt="Curriculum Vitae Preview" />
-            </a>
-          </div>
-          <span
-            className="small-note"
-            style={{ left: 376, top: 1325, fontSize: "15px", lineHeight: "22px" }}
-          >
-            A concise overview of my experience and tools.
-          </span>
-        </section>
-
-        <section aria-labelledby="port-title">
-          <span id="portfolio" className="anchor" style={{ top: 1540 }} />
-          <Deco cat src={dream("sleepy kitten lounging on a laptop")} l={148} t={1642} />
-          <p className="eyebrow" style={{ left: 400, top: 1598 }}>Portfolio</p>
-          <h2 id="port-title" className="h2" style={{ left: 400, top: 1626 }}>
-            Quick portfolio previews.
-          </h2>
-          {projects.map((p) => (
-            <article key={p.id} className="card" style={p.style}>
-              <p className="tag" style={{ color: p.tagColor }}>{p.tag}</p>
-              <p className="tag" style={{ color: "#9a98ab" }}>{p.kind}</p>
-              <h3>{p.name}</h3>
+          <div className="cv-container">
+            <div className="cv-frame">
               <a
-                href={p.link}
+                href="https://drive.google.com/file/d/1L8hA4DJkDvH_Ttvoudj0aJfhMCMOtYCr/view?usp=sharing"
                 target="_blank"
                 rel="noreferrer"
-                className="shot"
-                data-label="View portfolio slides ↗"
-                style={{ height: p.imgH }}
-                aria-label={`${p.name} portfolio preview`}
+                className="shot cv-shot"
+                data-label="View CV ↗"
+                aria-label="CV preview"
               >
-                <img src={encodeURI(p.image)} alt={`${p.name} preview`} />
+                <img src="/assets/cvthumbnail.png" alt="Curriculum Vitae Preview" />
               </a>
-              <p className="card-desc">{p.desc}</p>
-            </article>
-          ))}
+            </div>
+            <span className="small-note">
+              A concise overview of my experience and tools.
+            </span>
+          </div>
         </section>
 
-        <section aria-labelledby="tech-title">
-          <span id="tech" className="anchor" style={{ top: 2195 }} />
-          <p className="eyebrow" style={{ left: 180, top: 2253 }}>Tech stack</p>
-          <h2 id="tech-title" className="h2" style={{ left: 180, top: 2280 }}>
+        <section aria-labelledby="port-title" className="port-section">
+          <span id="portfolio" className="anchor anchor-port" />
+          <Deco cat src={dream("sleepy kitten lounging on a laptop")} l={148} t={1642} className="cat-laptop" />
+          <p className="eyebrow">Portfolio</p>
+          <h2 id="port-title" className="h2">
+            Quick portfolio previews.
+          </h2>
+          <div className="portfolio-cards">
+            {projects.map((p) => (
+              <article key={p.id} className={`card ${p.className}`}>
+                <p className="tag" style={{ color: p.tagColor }}>{p.tag}</p>
+                <p className="tag" style={{ color: "#9a98ab" }}>{p.kind}</p>
+                <h3>{p.name}</h3>
+                <a
+                  href={p.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="shot"
+                  data-label="View portfolio slides ↗"
+                  aria-label={`${p.name} portfolio preview`}
+                >
+                  <img src={encodeURI(p.image)} alt={`${p.name} preview`} />
+                </a>
+                <p className="card-desc">{p.desc}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section aria-labelledby="tech-title" className="tech-section">
+          <span id="tech" className="anchor anchor-tech" />
+          <p className="eyebrow">Tech stack</p>
+          <h2 id="tech-title" className="h2">
             Tools and platforms.
           </h2>
           <ul className="techs" aria-label="Tools and platforms">
@@ -228,19 +268,19 @@ export default function Home() {
           </ul>
         </section>
 
-        <section className="contact" aria-labelledby="contact-title">
-          <span id="contact" className="anchor" style={{ top: 2559 }} />
-          <Deco cat src={dream("sleepy kitten waving goodnight")} l={100} t={2646} />
+        <section className="contact contact-section" aria-labelledby="contact-title">
+          <span id="contact" className="anchor anchor-contact" />
+          <Deco cat src={dream("sleepy kitten waving goodnight")} l={100} t={2646} className="cat-waving" />
           <h2 id="contact-title" className="contact-me">CONTACT ME</h2>
-          <p className="intro" style={{ top: 2735, width: 740, left: 350 }}>
+          <p className="intro">
             I’m Christian Lauren Samuel (Tian), a fullstack developer and product engineer in
             Jakarta, Indonesia. Reach out for community-facing or any types of web and mobile
             projects.
           </p>
-          <Deco src={`${A}FrameLiftOff.png`} l={1140} t={2631} />
+          <Deco src={`${A}FrameLiftOff.png`} l={1140} t={2631} className="liftoff-badge" />
         </section>
 
-        <footer>
+        <footer className="site-footer">
           <div className="foot-brand">
             <span>Christian Lauren Samuel</span>
           </div>

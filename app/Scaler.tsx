@@ -11,11 +11,16 @@ export default function Scaler({ children }: { children: React.ReactNode }) {
     const apply = () => {
       const el = ref.current;
       if (!el) return;
-      const scale = document.documentElement.clientWidth / DESIGN_WIDTH;
-      el.style.zoom = String(scale);
+      if (window.innerWidth >= 1024) {
+        const scale = document.documentElement.clientWidth / DESIGN_WIDTH;
+        el.style.zoom = String(scale);
+      } else {
+        el.style.zoom = "";
+      }
     };
     apply();
     window.addEventListener("resize", apply);
+    window.addEventListener("orientationchange", apply);
 
     const GAIN = 4;
     let ctx: AudioContext | null = null;
@@ -45,10 +50,11 @@ export default function Scaler({ children }: { children: React.ReactNode }) {
 
     return () => {
       window.removeEventListener("resize", apply);
+      window.removeEventListener("orientationchange", apply);
       document.removeEventListener("click", onClick);
       ctx?.close();
     };
   }, []);
 
-  return <div ref={ref}>{children}</div>;
+  return <div ref={ref} style={{ width: "100%" }}>{children}</div>;
 }
