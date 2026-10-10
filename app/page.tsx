@@ -161,7 +161,7 @@ export default function Home() {
           </h2>
           <div className="cv-frame" style={{ left: 180, top: 1220, width: 170 }}>
             <a
-              href="#"
+              href="https://drive.google.com/file/d/1L8hA4DJkDvH_Ttvoudj0aJfhMCMOtYCr/view?usp=sharing"
               target="_blank"
               rel="noreferrer"
               className="shot cv-shot"
