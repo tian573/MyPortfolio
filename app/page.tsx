@@ -168,13 +168,13 @@ export default function Home() {
         <section aria-labelledby="hero-title" className="hero-section">
           <span id="introduction" className="anchor anchor-intro" />
           <h1 id="hero-title" className="hero-title">
-            Hi! I’m Christian
+            Hi! I’m Christian{" "}
             <br />
             Lauren Samuel (Tian).
           </h1>
           <p className="hero-sub">
             I build <DustWord color="#6fd36f">innovative</DustWord> and{" "}
-            <DustWord color="#f0c33c" offset={4}>helpful</DustWord> web and
+            <DustWord color="#f0c33c" offset={4}>helpful</DustWord> web and{" "}
             <br />
             mobile apps for <DustWord color="#3fa4e8" offset={8}>communities</DustWord>.
           </p>

@@ -1258,10 +1258,6 @@ a.shot.cv-shot {
 
 @media (max-width: 480px) {
 
-  .hero-title br,
-  .hero-sub br {
-    display: none !important;
-  }
 
   .stage {
     padding: 0 16px 40px 16px !important;
