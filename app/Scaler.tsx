@@ -11,7 +11,7 @@ export default function Scaler({ children }: { children: React.ReactNode }) {
     const apply = () => {
       const el = ref.current;
       if (!el) return;
-      if (window.innerWidth >= 1024) {
+      if (window.innerWidth >= 700) {
         const scale = document.documentElement.clientWidth / DESIGN_WIDTH;
         el.style.zoom = String(scale);
       } else {

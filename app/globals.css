@@ -576,7 +576,7 @@ a.shot.cv-shot {
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 700px) {
   .anchor-intro {
     top: 0;
   }
@@ -664,7 +664,7 @@ a.shot.cv-shot {
   }
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 699px) {
   .stage {
     width: 100% !important;
     max-width: 100% !important;
@@ -693,7 +693,7 @@ a.shot.cv-shot {
     position: absolute !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    top: 312px !important;
+    top: 348px !important;
     width: 383px !important;
     max-width: 100% !important;
     height: auto !important;
@@ -928,7 +928,7 @@ a.shot.cv-shot {
 
   .cat-hanging {
     position: absolute !important;
-    top: 332px !important;
+    top: 340px !important;
     left: calc(50% - 188px) !important;
     right: auto !important;
     bottom: auto !important;
