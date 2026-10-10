@@ -113,14 +113,15 @@ export default function Home() {
     <Scaler>
       <main className="stage" id="top">
         <Deco src={blurred("kitty silhouette")} l={-30} t={380} o={0.9} className="decor-glow decor-silhouette" />
-        <Deco src={`${A}BLurKitten.png`} l={-40} t={905} o={0.18} blur={14} className="decor-glow" />
-        <Deco src={`${A}BlurEllipse.png`} l={-80} t={120} o={0.6} className="decor-glow" />
+        <Deco src={`${A}BLurKitten.png`} l={-40} t={905} o={0.18} blur={14} className="decor-glow decor-kitten" />
+        <Deco src={`${A}BlurEllipse.png`} l={-80} t={120} o={0.6} className="decor-glow decor-ellipse-1" />
         <Deco src={`${A}Blur2Ellipse.png`} l={1000} t={1250} className="decor-glow" />
         <Deco src={`${A}Blur4Ellipse.png`} l={560} t={300} o={0.5} className="decor-glow" />
         <Deco src={`${A}Blur5Ellipse.png`} l={1180} t={700} o={0.5} className="decor-glow" />
-        <Deco src={blurred("cloud cottage")} l={1100} t={2100} o={0.5} className="decor-glow" />
+        <Deco src={blurred("cloud cottage")} l={1100} t={2100} o={0.5} className="decor-glow decor-cottage" />
 
-        <Deco src={`${A}FrameThread.png`} l={0} t={0} w={1440} className="thread-line" />
+        <Deco src={`${A}FrameThread.png`} l={0} t={0} w={1440} className="thread-line thread-desktop" />
+        <Deco src={`${A}thread_mobile.png`} className="thread-line thread-mobile" />
         <Deco src={`${A}waypoint1.png`} l={1082} t={1169} className="waypoint-dot waypoint-1" />
         <Deco src={`${A}waypoint2.png`} l={541} t={1974} className="waypoint-dot waypoint-2" />
         <Deco src={`${A}waypoint3.png`} l={1295} t={2340} className="waypoint-dot waypoint-3" />
