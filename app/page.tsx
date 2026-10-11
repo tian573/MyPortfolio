@@ -104,7 +104,16 @@ const links = [
   ["Contact", "#contact"],
 ];
 
-const techs = ["Flutter", "Next.js", "Laravel", "Firebase", "MySQL", "SQLite", "Docker", "GitHub"];
+const techs = [
+  { name: "Laravel", iconIndex: 2 },
+  { name: "Next.js", iconIndex: 1 },
+  { name: "Flutter", iconIndex: 0 },
+  { name: "Firebase", iconIndex: 3 },
+  { name: "MySQL", iconIndex: 4 },
+  { name: "SQLite", iconIndex: 5 },
+  { name: "Docker", iconIndex: 6 },
+  { name: "GitHub", iconIndex: 7 },
+];
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -255,15 +264,15 @@ export default function Home() {
             Tools and platforms.
           </h2>
           <ul className="techs" aria-label="Tools and platforms">
-            {techs.map((name, i) => (
+            {techs.map((tech) => (
               <li
-                key={name}
+                key={tech.name}
                 className="tech"
-                data-label={name}
+                data-label={tech.name}
                 role="img"
-                aria-label={name}
+                aria-label={tech.name}
                 tabIndex={0}
-                style={{ backgroundPosition: `-${i * 132}px 0` }}
+                style={{ backgroundPosition: `-${tech.iconIndex * 132}px 0` }}
               />
             ))}
           </ul>
