@@ -894,6 +894,7 @@ a.shot.cv-shot {
     max-width: 680px !important;
     margin: 0 auto !important;
     box-sizing: border-box !important;
+    transform: translateY(10px) !important;
   }
 
   .cat-moon {
@@ -928,7 +929,7 @@ a.shot.cv-shot {
 
   .cat-hanging {
     position: absolute !important;
-    top: 340px !important;
+    top: 335px !important;
     left: calc(50% - 188px) !important;
     right: auto !important;
     bottom: auto !important;
@@ -948,6 +949,7 @@ a.shot.cv-shot {
     height: 175px !important;
     border-radius: 48px !important;
     margin: 16px auto 28px auto !important;
+    transform: translateY(15px) !important;
   }
 
   .hero-section .intro {
@@ -958,6 +960,7 @@ a.shot.cv-shot {
     padding: 0 8px !important;
     margin: 0 auto !important;
     box-sizing: border-box !important;
+    transform: translateY(49px) !important;
   }
 
   .cat-cloud {
@@ -969,9 +972,10 @@ a.shot.cv-shot {
     width: 105px !important;
     height: 95px !important;
     object-fit: contain !important;
-    margin: 16px 12px 0 auto !important;
+    margin: 60px 56px 0 auto !important;
     align-self: flex-end !important;
     display: block !important;
+    transform: translateX(60px) !important;
   }
 
   .exp-section {
@@ -985,6 +989,7 @@ a.shot.cv-shot {
     max-width: 680px !important;
     margin: 0 auto !important;
     box-sizing: border-box !important;
+    transform: translateY(-39px) !important;
   }
 
   .exp-section .eyebrow {
